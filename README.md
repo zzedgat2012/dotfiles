@@ -29,12 +29,55 @@ Save and close the file.
 
 ## Nginx Windows Install
 
+Nginx comes pre-compiled for Windows which makes it extremely easy to get started. If it did not come pre-compiled, you would need to have a compiler installed on your computer with a full environment. Fortunately, this is not the case. At the time of this article, the latest Nginx version is 1.5.4 so we’ll download it from here:
+
+Download Nginx Windows
+
+Once you’ve downloaded Nginx for Windows, you can extract it to your folder of choice, we recommend that you install it somewhere easily accessible such as C:nginx.
+
+### Verify Nginx Windows Installation
+
+In order to make sure that the service is working with no problems, we recommend that you start a command prompt window and type the following, make sure that you update the path if you’ve installed it in another folder.
+```
+C:\nginx\nginx.exe
+```
+You should be able to go to http://localhost/ and you should see the “Welcome to Nginx” default page. If you see that page, then we can be sure that Nginx has been installed properly. We will now shut it down and install it as a service, to stop it, you can use this command.
+```
+C:\nginx\nginx.exe -s stop
+```
+Now, if you were using Nginx as a simple development server, you can use these simple commands to start and stop the server as you need. However, if you will be using it as a production server, you would want to install it as a Windows service, which is what we’re covering on this setup.
 
 
 ## PHP Windows Install
 
+Installing PHP on your development PC allows you to safely create and test a web application without affecting the data or systems on your live website.
 
+### Step 1: Download the files
+Download the latest PHP 7 ZIP package from [www.php.net/downloads.php](www.php.net/downloads.php)
 
+As always, virus scan the file and check its MD5 checksum using a tool such as fsum.
+
+### Step 2: Extract the files
+We will install the PHP files to C:\Program Files (x86)\PHP\v7.2, so create that folder and extract the contents of the ZIP file into it.
+
+PHP can be installed anywhere on your system, but you will need to change the paths referenced in the following steps.
+
+### Step 3: Configure php.ini
+Duplicate C:\Program Files (x86)\PHP\v7.2\php.ini-development and rename it to php.ini. There are several lines you will need to change in a text editor (use search to find the current setting). Where applicable, you will need to remove the leading semicolon to uncomment these setting.
+
+Define the extension directory:
+```
+extension_dir = "C:/php/ext"
+```
+Enable extensions. This will depend on the libraries you want to use, but the following extensions should be suitable for the majority of applications:
+```
+extension=curl
+extension=gd2
+extension=mbstring
+extension=mysql
+extension=pdo_mysql
+extension=xmlrpc
+```
 ## WinSW
 
 Then you'll need WinSW to create services and start them with Windows, you'll use this to create services for nginx and php.
