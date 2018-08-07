@@ -63,7 +63,9 @@ Once configured, you will need to create a service file, please be sure to creat
 You are now ready to install the Windows service, you can proceed to run the following command:
 
 ```
-C:/nginx/nginxsvc.exe install
+cd C:\nginx
+
+nginxsvc.exe install
 ```
 Let's do the same with PHP, in the folder where you extracted PHP find the file **php-cgi.exe**, copy WinSW and rename it to **phpsvc.exe**.
 
