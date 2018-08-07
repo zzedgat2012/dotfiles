@@ -1,0 +1,16 @@
+<service>
+  <id>php</id>
+  <name>php</name>
+  <description>php</description>
+  <workingdirectory>C:/Program Files (x86)/PHP/v7.2</workingdirectory>
+  <executable>C:/Program Files (x86)/PHP/v7.2/php-cgi.exe</executable>
+  <logpath>c:/nginx</logpath>
+  <logmode>roll</logmode>
+  <depend></depend>
+  <startargument>-b</startargument>
+  <startargument>127.0.0.1:9123</startargument>
+  <stopexecutable>taskkill</stopexecutable>
+  <stopargument>/IM</stopargument>
+  <stopargument>php-cgi.exe</stopargument>
+  <stopargument>/F</stopargument>
+</service>
