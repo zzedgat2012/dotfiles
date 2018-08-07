@@ -27,6 +27,32 @@ Add one single rule:
 ```
 Save and close the file.
 
+### Setup Acrylic as service
+
+Acrylic DNS proxy comes with lots of .bat files that are just aliases to the AcrylicController.exe binary. It’s a nice entry point to Acrylic’s config, even though it’s not 100% documented, we have the basic ideas on how everything works.
+
+Run the InstallAcrylicService.bat script, to install Acrylic as a Windows service.
+
+Note: It may not show or output anything. In this case, start a cmd terminal, and execute the script directly in the command line. And if it still doesn’t work, run it as administrator.
+
+The service should be running. To check this, we can run this command:
+```
+$ sc query AcrylicServiceController
+
+SERVICE_NAME: AcrylicServiceController
+        TYPE               : 10  WIN32_OWN_PROCESS
+        STATE              : 4  RUNNING                    # <------- Means it's working! \o/
+                                (STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```        
+ **To Setup Windows to point to Acrylic before using other DNS resolution, see this article:**
+
+ [Setup a dnsmasq equivalent on Windows (with Acrylic)](http://www.orbitale.io/2017/12/05/setup-a-dnsmasq-equivalent-on-windows-with-acrylic.html)
+
+
 ## Nginx Windows Install
 
 Nginx comes pre-compiled for Windows which makes it extremely easy to get started. If it did not come pre-compiled, you would need to have a compiler installed on your computer with a full environment. Fortunately, this is not the case. At the time of this article, the latest Nginx version is 1.5.4 so we’ll download it from here:
@@ -67,7 +93,7 @@ Duplicate C:\Program Files (x86)\PHP\v7.2\php.ini-development and rename it to p
 
 Define the extension directory:
 ```
-extension_dir = "C:/php/ext"
+extension_dir = "C:\Program Files (x86)\PHP\v7.2\ext"
 ```
 Enable extensions. This will depend on the libraries you want to use, but the following extensions should be suitable for the majority of applications:
 ```
@@ -140,9 +166,30 @@ cd C:\Program Files (x86)\PHP\v7.2
 phpsvc.exe install
 ```
 
-![alt text]()
-
 ## Database
 
+The simplest and recommended method is to download MySQL Installer (for Windows) and let it install and configure all of the MySQL products on your system. Here is how:
 
+**Note: In this setup we use MySQL Instalation as Server Machine**
 
+1. Download MySQL Installer from http://dev.mysql.com/downloads/installer/ and execute it.
+2. Choose the appropriate Setup Type for your system. Typically you will choose Developer Default to install MySQL server and other MySQL tools related to MySQL development, helpful tools like MySQL Workbench. Or, choose the Custom setup type to manually select your desired MySQL products.
+3. Complete the installation process by following the instructions. This will install several MySQL products and start the MySQL server.
+
+MySQL is now installed. If you configured MySQL as a service, then Windows will automatically start MySQL server every time you restart your system.
+
+This process also installs the MySQL Installer application on your system, and later you can use MySQL Installer to upgrade or reconfigure your MySQL products.
+
+For more info see: [Installing MySQL on Microsoft Windows](https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html)
+
+References:
+
+[Setup a dnsmasq equivalent on Windows (with Acrylic)](http://www.orbitale.io/2017/12/05/setup-a-dnsmasq-equivalent-on-windows-with-acrylic.html)
+
+[Nginx Windows: How to Install](https://vexxhost.com/resources/tutorials/nginx-windows-how-to-install/)
+
+[How to Install PHP on Windows](https://www.sitepoint.com/how-to-install-php-on-windows/)
+
+[Installing MySQL on Microsoft Windows](https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html)
+
+[A Lot of Vin instructions in the process](http://vin.8sistemas.com/)
