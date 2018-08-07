@@ -22,9 +22,7 @@ Close this file, and open another one: AcrylicHosts.txt. There, it’s like a Wi
 
 Add one single rule:
 
-After you download Acrylic Proxy DNS you need to configure than to redirect every call made to "ex: *.localhost *.docker to 127.0.0.1" for this open **Acrylic UI** > Files > Open Acrylic Hosts and put this line at the end of the config file:
-
-```javascript
+```
 127.0.0.1 *.localhost *.docker
 ```
 Save and close the file.
